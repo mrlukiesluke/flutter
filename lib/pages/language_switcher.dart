@@ -1,0 +1,33 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_application_1/l10n/app_localizations.dart';
+
+class LanguageSwitcher extends StatelessWidget {
+  final Function(Locale) onLocaleChange;
+
+  const LanguageSwitcher({super.key, required this.onLocaleChange});
+
+  @override
+  Widget build(BuildContext context) {
+    final local = AppLocalizations.of(context)!;
+    return Scaffold(
+      appBar: AppBar(title: Text(local.hello)),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(local.welcome),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => onLocaleChange(const Locale('en')),
+              child: const Text('English'),
+            ),
+            ElevatedButton(
+              onPressed: () => onLocaleChange(const Locale('ar')),
+              child: const Text('العربية'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

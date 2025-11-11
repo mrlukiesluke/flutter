@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/l10n/app_localizations.dart';
 import 'package:flutter_application_1/pages/history_page.dart';
 import 'package:flutter_application_1/pages/home_page.dart';
+import 'package:flutter_application_1/pages/language_switcher.dart';
 import 'package:flutter_application_1/pages/profile_page.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  final Function(Locale) onLocaleChange;
+
+  const MainScreen({super.key, required this.onLocaleChange});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -30,8 +34,26 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalizations.of(context)!;
     return Scaffold(
-      appBar: AppBar(title: const Text('Swipe Navigation')),
+      appBar: AppBar(
+        title: const Text('Swipe Navigation'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            tooltip: 'Settings',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      LanguageSwitcher(onLocaleChange: widget.onLocaleChange),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
       body: PageView(
         controller: _pageController,
         onPageChanged: _onPageChanged,
@@ -44,10 +66,16 @@ class _MainScreenState extends State<MainScreen> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: _onNavTapped,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-          BottomNavigationBarItem(icon: Icon(Icons.history), label: 'History'),
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: local.home),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: local.profile,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.history),
+            label: local.history,
+          ),
         ],
       ),
     );
