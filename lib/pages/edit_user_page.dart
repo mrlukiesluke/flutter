@@ -82,7 +82,7 @@ class _EditUserPageState extends State<EditUserPage> {
             duration: Duration(seconds: 2),
           ),
         );
-        // Navigator.pop(context, updatedUser); // return updated user
+        Navigator.pop(context, updatedUser); // return updated user
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
