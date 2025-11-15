@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/l10n/app_localizations.dart';
+import 'package:flutter_application_1/pages/flutter_home_link_view.dart';
 import 'package:flutter_application_1/pages/history_page.dart';
 import 'package:flutter_application_1/pages/home_page.dart';
 import 'package:flutter_application_1/pages/language_switcher.dart';
@@ -58,7 +59,14 @@ class _MainScreenState extends State<MainScreen> {
         controller: _pageController,
         onPageChanged: _onPageChanged,
         children: [
-          MyHomePage(title: "Home", onNavigate: _onNavTapped),
+          // MyHomePage(title: "Home", onNavigate: _onNavTapped),
+          LinkItem(
+            profileImageUrl: '',
+            name: 'Luke Waashington Garces',
+            company: 'Lenovo PCCW Inc',
+            description: 'des',
+            contentImageUrl: 'd',
+          ),
           ProfilePage(),
           HistoryPage(),
         ],
