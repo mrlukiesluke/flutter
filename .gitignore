@@ -49,3 +49,11 @@ pubspec.lock
 
 # Ignore macOS folder
 /macos/
+/ios/
+/ios/Pods/
+/ios/Runner.xcworkspace/
+
+# Ignore entire ios folder
+ios/
+ios/Pods/
+ios/Runner.xcworkspace/
